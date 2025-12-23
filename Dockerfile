@@ -19,7 +19,7 @@ WORKDIR /app
 
 # İlk aşamada ürettiğimiz dosyaları buraya alıyoruz
 COPY --from=build /app/out .
-COPY HediyelikEsya.db .
+COPY hediyelik.db .
 # Veritabanı dosyasını da kopyaladığımızdan emin olalım (SQLite için kritik)
 # Eğer db dosyası kodların arasındaysa yukarıdaki COPY komutu zaten alır.
 
