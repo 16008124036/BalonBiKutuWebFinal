@@ -1,0 +1,43 @@
+@model HediyelikEsya.Models.Urun
+@{ ViewData["Title"] = "Ürünü Düzenle"; }
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">Ürünü Güncelle</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit">
+                        <input type="hidden" asp-for="Id" />
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Ürün Adı</label>
+                            <input asp-for="Ad" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Fiyat (₺)</label>
+                            <input asp-for="Fiyat" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Açıklama</label>
+                            <textarea asp-for="Aciklama" class="form-control" rows="3"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold text-primary">Resim Dosya Adı</label>
+                            <input asp-for="ResimUrl" class="form-control" />
+                            <small class="text-muted">Mevcut dosya adı: @Model.ResimUrl</small>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success">Değişiklikleri Kaydet</button>
+                            <a asp-action="Index" class="btn btn-secondary">Vazgeç</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

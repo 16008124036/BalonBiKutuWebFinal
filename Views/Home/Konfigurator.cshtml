@@ -1,0 +1,153 @@
+@{
+    ViewData["Title"] = "Tasarım Atölyesi";
+}
+
+<div class="container mt-4">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold text-primary" style="font-family: 'Brush Script MT', cursive;">🎨 Kendi Kutunu Tasarla</h2>
+        <p class="lead text-muted">Hayalindeki renkleri, içerikleri ve balon yazısını seç!</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            
+            <div class="card shadow-sm mb-4 border-0">
+                <div class="card-header bg-white fw-bold"><i class="bi bi-box-seam"></i> Kutu Rengi Seçimi</div>
+                <div class="card-body">
+                    <div class="btn-group w-100" role="group">
+                        <input type="radio" class="btn-check" name="kutuRenk" id="kutuBeyaz" autocomplete="off" checked onclick="guncelle()">
+                        <label class="btn btn-outline-secondary" for="kutuBeyaz">Beyaz</label>
+
+                        <input type="radio" class="btn-check" name="kutuRenk" id="kutuSiyah" autocomplete="off" onclick="guncelle()">
+                        <label class="btn btn-outline-dark" for="kutuSiyah">Siyah</label>
+
+                        <input type="radio" class="btn-check" name="kutuRenk" id="kutuPembe" autocomplete="off" onclick="guncelle()">
+                        <label class="btn btn-outline-danger" for="kutuPembe">Pembe</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4 border-0">
+                <div class="card-header bg-white fw-bold"><i class="bi bi-gift"></i> Kurdele Rengi</div>
+                <div class="card-body">
+                    <select class="form-select" id="kurdeleSecim" onchange="guncelle()">
+                        <option value="Kırmızı">Kırmızı Kurdele</option>
+                        <option value="Altın Sarısı">Altın Sarısı Kurdele</option>
+                        <option value="Gümüş Gri">Gümüş Gri Kurdele</option>
+                        <option value="Mor">Mor Kurdele</option>
+                        <option value="Siyah">Siyah Kurdele</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4 border-0">
+                <div class="card-header bg-white fw-bold"><i class="bi bi-flower1"></i> Kutu İçi Seçenekleri</div>
+                <div class="card-body">
+                    <select class="form-select" id="kutuIciSecim" onchange="guncelle()">
+                        <option value="Gül">Kırmızı Gül</option>
+                        <option value="Papatya">Papatya</option>
+                        <option value="Ferrero Rocher">Ferrero Rocher Çikolata</option>
+                        <option value="Çikolata Kutusu">Karışık Çikolata Kutusu</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4 border-0">
+                <div class="card-header bg-white fw-bold"><i class="bi bi-balloon-heart"></i> İç Balon Renkleri</div>
+                <div class="card-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Metalik Altın" id="balon1" onchange="guncelle()">
+                        <label class="form-check-label" for="balon1">Metalik Altın</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Krom Gümüş" id="balon2" onchange="guncelle()">
+                        <label class="form-check-label" for="balon2">Krom Gümüş</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Pastel Pembe" id="balon3" onchange="guncelle()">
+                        <label class="form-check-label" for="balon3">Pastel Pembe</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Gece Mavisi" id="balon4" onchange="guncelle()">
+                        <label class="form-check-label" for="balon4">Gece Mavisi</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4 border-0">
+                <div class="card-header bg-white fw-bold"><i class="bi bi-type"></i> Balon Üzerine Yazılacak Yazı</div>
+                <div class="card-body">
+                    <input type="text" class="form-control" id="balonYazi" maxlength="20" placeholder="Örn: Seni Seviyorum" oninput="guncelle()">
+                    <div class="d-flex justify-content-between mt-1">
+                        <small class="text-muted" style="font-size: 0.8rem;">Maksimum 20 karakter.</small>
+                        <small class="text-primary fw-bold" id="karakterSayac">0/20</small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-lg border-primary sticky-top" style="top: 20px;">
+                <div class="card-body text-center p-5">
+                    <h3 class="card-title text-primary"><i class="bi bi-stars"></i> Seçim Özeti</h3>
+                    <hr>
+                    <p class="lead mt-4 fs-6" id="ozetMetni">
+                        Henüz seçim yapılmadı.
+                    </p>
+                    
+                    <div class="alert alert-info mt-4">
+                        <small>Bu kombinasyonu beğendin mi?</small><br>
+                        <strong>Hemen WhatsApp'tan sor!</strong>
+                    </div>
+
+                    <a href="#" id="wpLink" target="_blank" class="btn btn-success btn-lg w-100 rounded-pill shadow-sm">
+                        <i class="bi bi-whatsapp"></i> Fiyat Sor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function guncelle() {
+        // 1. Kutu Rengini Bul
+        let kutuElement = document.querySelector('input[name="kutuRenk"]:checked');
+        let kutu = kutuElement ? kutuElement.nextElementSibling.innerText : "Belirtilmemiş";
+        
+        // 2. Kurdele Rengini Bul
+        let kurdele = document.getElementById("kurdeleSecim").value;
+
+        // 3. Kutu İçi Ürünü Bul
+        let kutuIci = document.getElementById("kutuIciSecim").value;
+        
+        // 4. Seçili Balonları Bul
+        let balonlar = [];
+        document.querySelectorAll('input[type="checkbox"]:checked').forEach((checkbox) => {
+            balonlar.push(checkbox.value);
+        });
+        let balonMetni = balonlar.length > 0 ? balonlar.join(", ") : "Henüz seçilmedi";
+
+        // 5. YENİ: Balon Yazısını Al ve Sayacı Güncelle
+        let yaziInput = document.getElementById("balonYazi");
+        let yazi = yaziInput.value;
+        document.getElementById("karakterSayac").innerText = yazi.length + "/20";
+        
+        let yaziMesaji = yazi.length > 0 ? yazi : "(Yazı İstenmiyor)";
+
+        // Metni Oluştur
+        let mesaj = `Merhaba, kendi tasarımımı yaptım:\n\n📦 **Kutu:** ${kutu}\n🎁 **İçerik:** ${kutuIci}\n🎀 **Süsleme:** ${kurdele}\n🎈 **Küçük Balonlar:** ${balonMetni}\n✍️ **Balon Yazısı:** ${yaziMesaji}\n\nBu tasarım için fiyat alabilir miyim?`;
+
+        // Ekrana Yaz (Satır başları HTML'de <br> gerektirir ama biz basit tutalım)
+        document.getElementById("ozetMetni").innerHTML = mesaj.replace(/\n/g, "<br>");
+
+        // WhatsApp Linkini Güncelle
+        let telefonNo = "905456328567"; 
+        let wpUrl = `https://wa.me/${telefonNo}?text=${encodeURIComponent(mesaj)}`;
+        document.getElementById("wpLink").href = wpUrl;
+    }
+
+    // Sayfa açılınca bir kez çalıştır
+    window.onload = guncelle;
+</script>

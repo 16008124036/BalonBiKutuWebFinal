@@ -1,0 +1,41 @@
+@model HediyelikEsya.Models.Urun
+@{ ViewData["Title"] = "Yeni Ürün Ekle"; }
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Yeni Ürün Ekle</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Ürün Adı</label>
+                            <input asp-for="Ad" class="form-control" placeholder="Örn: Papatya Kutusu" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Fiyat (₺)</label>
+                            <input asp-for="Fiyat" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Açıklama</label>
+                            <textarea asp-for="Aciklama" class="form-control" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-bold text-primary">Resim Dosya Adı</label>
+                            <input asp-for="ResimUrl" class="form-control" placeholder="Örn: papatya.jpg.jpeg" />
+                            <small class="text-muted">wwwroot/img klasöründeki dosya adını uzantısıyla yazın.</small>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Kaydet ve Yayınla</button>
+                            <a asp-action="Index" class="btn btn-secondary">İptal</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
