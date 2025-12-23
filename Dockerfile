@@ -1,6 +1,6 @@
 # 1. AŞAMA: İNŞA ETME (BUILD)
 # Microsoft'un hazır .NET 8 kutusunu kullanıyoruz
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
 # Proje dosyalarını kopyala
@@ -14,7 +14,7 @@ RUN dotnet publish -c Release -o out
 
 # 2. AŞAMA: ÇALIŞTIRMA (RUN)
 # Sadece çalıştırma dosyalarını alan daha hafif bir kutuya geçiyoruz
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 
 # İlk aşamada ürettiğimiz dosyaları buraya alıyoruz
